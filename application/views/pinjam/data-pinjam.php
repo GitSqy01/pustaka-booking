@@ -28,7 +28,8 @@
                                     <td><?= $p['id_buku']; ?></td>
                                     <td><?= $p['tgl_kembali']; ?></td>
                                     <td>
-                                        <?= date('Y-m-d'); ?>
+                                        <!-- <?= date('Y-m-d'); ?> -->
+                                        <? $p['tanggal_pengembalian']; ?>
                                         <input type="hidden" name="tgl_pengembali
 an" id="tgl_pengembalian" value="<?= date('Y-m-d'); ?>">
                                     </td>

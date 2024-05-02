@@ -29,11 +29,11 @@
                                             <button type="submit" class="btn btn-sm btn-outline-info"><i class="fas fa-fw fa-cart-plus"></i> Pinjam</button>
                                         </td>
                                         <td>
-                                            <input class="form-check-user rounded-sm" style="width:100px" type="text" name="denda" id="denda" value="5000">
+                                            <input class="form-check-user rounded-sm" style="width:100px" type="text" name="denda" id="denda" value="1000" readonly>
                                             <?= form_error(); ?>
                                         </td>
                                         <td>
-                                            <input class="form-check-user rounded-sm" style="width:100px" type="text" name="lama" id="lama" value="3">
+                                            <input class="form-check-user rounded-sm" style="width:100px" type="text" name="lama" id="lama" value="14" readonly>
                                             <?= form_error(); ?>
                                         </td>
                                     </form>

@@ -1,7 +1,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <?= $this->session->flashdata('pesan'); ?>
+
     <div class="row">
         <div class="col-lg-12">
             <?php if (validation_errors()) { ?>
@@ -9,7 +9,7 @@
                     <?= validation_errors(); ?>
                 </div>
             <?php } ?>
-            <?= $this->session->flashdata('pesan'); ?>
+
             <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#bukuBaruModal"><i class="fas fa-file-alt"></i> Buku Baru</a>
             <table class="table table-hover">
                 <thead>

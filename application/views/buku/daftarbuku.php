@@ -1,5 +1,3 @@
-<?= $this->session->flashdata('pesan'); ?>
-
 <div style="padding: 25px;">
     <div class="x_panel">
         <div class="x_content">

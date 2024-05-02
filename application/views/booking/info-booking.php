@@ -22,6 +22,8 @@
                                 <th>Penulis</th>
                                 <th>Penerbit</th>
                                 <th>Tahun</th>
+                                <th>Tanggal Booking</th>
+                                <th>Batas Ambil</th>
                             </tr>
                             <?php
                             $no = 1;
@@ -36,6 +38,8 @@
                                     <td nowrap><?= $i['pengarang']; ?></td>
                                     <td nowrap><?= $i['penerbit']; ?></td>
                                     <td nowrap><?= $i['tahun_terbit']; ?></td>
+                                    <td nowrap><?= $i['tgl_booking']; ?></td>
+                                    <td nowrap><?= $i['batas_ambil']; ?></td>
                                 </tr>
                             <?php $no++;
                             } ?>
