@@ -137,9 +137,20 @@ bmil Buku yang dibooking atau tunggu 1x24 Jam untuk bisa booking kembali </div>'
         $data['user'] = $this->session->userdata('nama');
         $data['judul'] = "Cetak Bukti Booking";
         $data['useraktif'] = $this->ModelUser->cekData(['id' => $this->session->userdata('id_user')])->result();
-        $data['items'] = $this->db->query("select*from booking bo, booking_detail 
+        $data1 = $this->db->query("select*from booking bo, booking_detail 
+d, buku bu where d.id_booking=bo.id_booking and d.id_buku=bu.id and 
+bo.id_user='$id_user'")->num_rows();
+
+        if ($data1 <  1) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-messege alert-danger" role="alert"> Tidak ada data booking, silahkan booking dulu </div>');
+            redirect(base_url());
+        } else {
+            $data['items'] = $this->db->query("select*from booking bo, booking_detail 
 d, buku bu where d.id_booking=bo.id_booking and d.id_buku=bu.id and 
 bo.id_user='$id_user'")->result_array();
+        }
+
+
         // $this->load->library('dompdf_gen');
 
         $this->load->view('booking/bukti-pdf', $data);

@@ -40,7 +40,15 @@
                             </table>
                         </center>
                         <p>
-                            <a class="btn btn-outline-primary fas fw fa-shopping-cart" href="<?= base_url('booking/tambahBooking/' . $id); ?>"> Booking</a>
+
+                            <!-- <a class="btn btn-outline-primary fas fw fa-shopping-cart" href="<?= base_url('booking/tambahBooking/' . $id); ?>"> Booking</a> -->
+                            <?php
+                            if (stok < 1) {
+                                echo "<i class='disabled btn btn-outline-primary fas fw fa-hourglass'>Stok kosong</i>";
+                            } else {
+                                "<a class='btn btn-outline-primary fas fw fa-shopping-cart' href='" . base_url('booking/tambahBooking/' . $id) . "'> Booking</a>";
+                            }
+                            ?>
                             <span class="btn btn-outline-secondary fas fw fa-reply" onclick="window.history.go(-1)"> Kembali</span>
                         </p>
                     </div>

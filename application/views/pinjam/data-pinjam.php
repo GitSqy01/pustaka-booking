@@ -33,22 +33,40 @@
                                         <input type="hidden" name="tgl_pengembali
 an" id="tgl_pengembalian" value="<?= date('Y-m-d'); ?>">
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <?php
                                         $tgl1 = new DateTime($p['tgl_kembali']);
                                         $tgl2 = new DateTime();
                                         $selisih = $tgl2->diff($tgl1)->format("%a");
                                         echo $selisih;
                                         ?> Hari
-                                    </td>
-                                    <td><?= $p['denda']; ?></td>
-                                    <?php if ($p['status'] == "Pinjam") {
-                                        $status = "warning";
-                                    } else {
-                                        $status = "secondary";
-                                    } ?>
-                                    <td><i class="btn btn-outline-
-<?= $status; ?> btn-sm"><?= $p['status']; ?></i></td>
+                                    </td> -->
+
+                                    <td>
+                                        <?php
+                                        // validasi keterlambatan
+                                        if ($p['status'] == "kembali") {
+                                            $tglx = new DateTime($p['tgl_kembali']);
+                                            $tgly = new DateTime($p['tgl_pengembalian']);
+                                            if ($tgly < $tglx) {
+                                                $selisih = "0";
+                                                echo $selisih;
+                                            } else {
+                                                $selisih = $tgly->diff($tglx)->format("%a");
+                                                echo $selisih;
+                                            }
+                                        } else {
+                                            $tgl1 = new DateTime($p['tgl_kembali']);
+                                            $tgl2 = new DateTime();
+                                            if ($tgl2 < $tgl1) {
+                                                $selisih = "0";
+                                                echo $selisih;
+                                            } else {
+                                                $selisih = $tgl2->diff($tgl1)->format("%a");
+                                                echo $selisih;
+                                            }
+                                        } ?> Hari </td>
+
                                     <?php
                                     if ($selisih < 0) {
                                         $total_denda = $p['denda'] * 0;
@@ -56,16 +74,32 @@ an" id="tgl_pengembalian" value="<?= date('Y-m-d'); ?>">
                                         $total_denda = $p['denda'] * $selisih;
                                     }
                                     ?>
-                                    <td><?= $total_denda; ?>
-                                        <input type="hidden" name="totaldenda" id="totaldenda" value="<?= $total_denda; ?>">
-                                    </td>
-                                    <td nowrap>
-                                        <?php if ($p['status'] == "Kembali") { ?>
-                                            <i class="btn btn-sm btn-outline-secondary"><i class="fas fa-fw fa-edit"></i>Ubah Status</i>
-                                        <?php } else { ?>
-                                            <a class="btn btn-sm btn-outline-info" href="<?= base_url('pinjam/ubahStatus/' . $p['id_buku'] . '/' . $p['no_pinjam']); ?>"><i class="fas fa-fw fa-edit"></i>Ubah Status</a>
-                                        <?php } ?>
-                                    </td>
+
+                                    <form action="<?= base_url('pinjam/ubahStatus/' . $p['id_buku'] . '/' . $p['no_pinjam']); ?>" method="post">
+                                        <td>
+                                            <?= $total_denda; ?>
+                                            <input type="hidden" name="totaldenda" id="totaldenda" value="<?= $total_denda; ?>">
+                                        </td>
+
+
+
+
+
+
+
+
+                                        <td nowrap>
+                                            <?php if ($p['status'] == "Kembali") { ?>
+                                                <i class="btn btn-sm btn-outline-secondary"><i class="fas fa-fw fa-check"></i>SELESAI</i>
+                                            <?php } else { ?>
+                                                <button type="submit" class="btn btn-sm btn-outline-info">
+                                                    <i class="fas fa-fw fa-chart-plus"></i>
+                                                    UBAH
+                                                </button>
+                                                <!-- <a href="<?= base_url('pinjam/ubahStatus/' . $p['id_buku'] . '/' . $p['no_pinjam']); ?>"><i class="fas fa-fw fa-edit"></i>Ubah Status</a> -->
+                                            <?php } ?>
+                                        </td>
+                                    </form>
                                 </tr>
                             <?php
                             } ?>
