@@ -86,7 +86,7 @@ class Pinjam extends CI_Controller
         //update status menjadi kembali pada saat buku dikembalikan
         $this->db->query("UPDATE pinjam, detail_pinjam SET pinjam.status='$status', pinjam.tgl_pengembalian='$tgl', pinjam.total_denda='$totaldenda' WHERE detail_pinjam.id_buku='$id_buku' AND pinjam.no_pinjam='$no_pinjam'");
         //update stok dan dipinjam pada tabel buku
-        $this->db->query("UPDATE buku, detail_pinjam SET buku.dipinjam=buku.dipinjam-1, buku.stok=buku.stok+1 WHERE buku.id=detail_pinjam.id_buku");
+        $this->db->query("UPDATE buku, detail_pinjam SET buku.dipinjam=buku.dipinjam-1, buku.stok=buku.stok+1 WHERE buku.id=detail_pinjam.id_buku AND detail_pinjam.no_pinjam='$no_pinjam'");
         $this->session->set_flashdata('pesan', '<div class="laert alert-message alert-success" role="alert"></div>');
         redirect(base_url('pinjam'));
     }
